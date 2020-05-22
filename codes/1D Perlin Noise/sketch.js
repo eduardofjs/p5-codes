@@ -1,20 +1,35 @@
-var xoff = 1;
+//var xoff = 1;
+var start = 0;
+var inc = 0.01
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
 }
 
 function draw() { 
   background(60);
 
- /*for(var x=0; x< width; x++){
-    stroke(255);
-    point(x, random(height));
-    
-  }*/
+  //Perlin noise values varying along the X axis
+  /*
   var x = map(noise(xoff), 0, 1, 0, width)
   xoff +=0.01;
   console.log(x);
   ellipse(x, 200, 24, 24);
+  */ 
 
+  //Graphic with Perlin noise values along the Y axis
+  stroke(255);
+  noFill();
+  beginShape();
+  var xoff = start;
+  for (var x = 0; x<width; x++){
+    stroke(255);
+    var y = map(noise(xoff), 0, 1, 0, height);
+    vertex(x, y);
+
+    xoff += inc;
+  }
+  endShape();
+
+  start += inc;
 }
