@@ -24,8 +24,11 @@ function draw() {
   var xoff = start;
   for (var x = 0; x<width; x++){
     stroke(255);
-    var y = map(noise(xoff), 0, 1, 0, height);
-    vertex(x, y);
+    //var y = map(noise(xoff), 0, 1, 0, height); 
+    var n = map(noise(xoff), 0, 1, -50, 50); 
+    var s = map(sin(xoff), -1, 1, 0, height); //create a sine wave values
+    var y = (s + n); //add noise to sine values
+    vertex(x, y); // create a sine wave with Perlin noise
 
     xoff += inc;
   }
